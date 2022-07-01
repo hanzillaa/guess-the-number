@@ -1,0 +1,75 @@
+import random
+
+#title
+print("Guess the Number\n")
+print("My number is between 0 and 1000. You have 10 guesses. Give it a try!")
+
+#generate random number for computer
+randonum = random.randint(0,1000)
+# initialize guesses to 0
+guesstotal = 0
+# set player to False, once input received player is set to True
+player = False
+
+while player == False:
+    # set allowed guesses to 10
+    while guesstotal < 10:
+        # player set to True with input
+        player = int(input())
+        if player == randonum:
+            print("You got it!")
+            playagain = input("Would you like to play again?")
+            play = playagain.capitalize()
+            if play == "Yes":
+                #set player back to False, send back to while loop
+                player = False
+                #generates new random number for computer
+                newrandonum = random.randint(0,1000)
+                #make sure new random number is considered randonum
+                randonum = newrandonum
+                #set guesses back to 0 for the next play
+                guesstotal=0
+                print("Try guessing another number!")
+            elif play == "No":
+                break
+            else:
+                print("Not a valid input. Goodbye!")
+                break
+        elif player < randonum:
+            print("Too low, try again!")
+        elif player > randonum:
+            print("Too high, try again!")
+        else:
+            print("Invalid input.")
+        #increment number of guesses through each loop
+        guesstotal+=1
+        
+        if guesstotal == 5:
+            print("You have five guesses left!")
+        elif guesstotal == 8:
+            print("You only have two tries left, guess carefully!")
+        else:
+            continue
+
+    # set catch for when player exceeds allowed guesses
+    else: 
+        print("Too many guesses! My number was ", randonum)
+        playagain = input("Would you like to try again? ")
+        # sets input to correct format
+        play = playagain.capitalize()
+
+        if play == "Yes":
+            #set player back to False, send back to while loop
+            player = False
+            #generates new random number for computer
+            newrandonum = random.randint(0,1000)
+            #make sure new random number is considered randonum
+            randonum = newrandonum
+            #set guesses back to 0 for the next play
+            guesstotal=0
+            print("Try guessing another number!")
+        elif play == "No":
+            break
+        else:
+            print("Not a valid input. Goodbye!")
+            break
